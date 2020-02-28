@@ -1,0 +1,14 @@
+.gradient-boarder {
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, #00AEDB, rgba(0, 0, 0, 0)) 1 100%; }
+
+.center-translate {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+/*# sourceMappingURL=main.css.map */
