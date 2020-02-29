@@ -14,4 +14,8 @@
 .logo-login {
   width: 50% !important; }
 
+span.asterisk::after {
+  content: '  *';
+  color: red !important; }
+
 /*# sourceMappingURL=main.css.map */

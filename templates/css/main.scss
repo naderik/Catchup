@@ -1,7 +1,7 @@
-.gradient-boarder{
+.gradient-boarder {
     border-width: 3px;
     border-style: solid;
-    border-image:linear-gradient(to bottom,#00AEDB,rgba(0, 0, 0, 0)) 1 100%;
+    border-image: linear-gradient(to bottom, #00AEDB, rgba(0, 0, 0, 0)) 1 100%;
 }
 
 .center-translate {
@@ -12,6 +12,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.logo-login{
+
+.logo-login {
     width: 50% !important;
+}
+
+span.asterisk::after {
+    content: '  *';
+    color: red !important;
 }
