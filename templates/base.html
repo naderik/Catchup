@@ -1,5 +1,4 @@
 <!doctype html>
-{% load static %}
 <html lang="en">
 
 <head>
@@ -8,38 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/main.css" %}">
-    <link rel="stylesheet" href="{% static "css/location.css" %}">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/location.css">
     <title>CatchUp to catch up!</title>
 </head>
 
-<header>
-  {% block header %}{% endblock %}
-</header>
+{% block content %}{% endblock %}
 
-<body>
-  <div class="container gradient-boarder center-translate">
-    <div class="col text-center">
-        <img class="logo-login" src="img/logo.svg" alt="logo">
-        <h1 style="display: none;">CatchUp</h1>
-        <h2>Place to catch up!</h2>
-    </div>
-    <div class="col d-flex  justify-content-center">
-      <div class="row top-buffer">
-        <div class="col-sm-6 form-group">
-            <button type="button" class="btn btn-primary" id="getlocationbtn">Get Location</button>
-        </div>
-        <div class="col-lg-6 form-group">
-            <label for="Latitude">Latitude</label>
-            <input type="text" class="form-control locationtxt" id="startLat">
-            <label for="Longitude">Longitude</label>
-            <input type="text" class="form-control locationtxt" id="startLon">
-        </div>
-      </div>
-    </div>
-  </div>
-  
+
+
   <footer class="bg-white">
     <!-- Copyrights -->
     <div class="bg-light py-4">
@@ -101,5 +78,4 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 
-</body>
 </html>
