@@ -76,7 +76,7 @@ docs/_build/
 
 # PyBuilder
 target/
-
+.sass-cache/
 
 ### Django ###
 *.log
