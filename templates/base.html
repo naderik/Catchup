@@ -16,7 +16,7 @@
     {% block title %}<title>CatchUp to catch up!</title>{% endblock %}
 </head>
 
-{% block header %}{% endblock %}
+{% block header %}{% endblock header %}
 
 {% block content %}
     <div id="map"></div>
@@ -24,9 +24,9 @@
         <button id="createactivitytoggle" aria-label="Add"><i class="material-icons md-24">add</i></button>
         <button id="mylocation" aria-label="My Location"><i class="material-icons md-24">near_me</i></button>
     </div>
-{% endblock %}
+{% endblock content %}
 
-{% block footer %}{% endblock %}
+{% block footer %}{% endblock footer %}
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Bootstrap JS -->
