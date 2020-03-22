@@ -2,80 +2,149 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/location.css">
-    <title>CatchUp to catch up!</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/location.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Lato" rel="stylesheet">
+  <script src="js/jquery-3.4.1.slim.min.js"></script>
+  <title>CatchUp to catch up!</title>
 </head>
+<header class="fixed-top">
+  <div class="navbar-nav mx-auto my-auto">
+    <div class="row">
+      <div class="col-4 text-center my-2 px-2 border-right">
+        <img id="navlogo" src="img/logo-w.svg" alt="CatchUp Logo">
+      </div>
+      <div class="col-8 my-auto">
+        <input class="form-control" id="navsearch" type="text" placeholder="Search Activity...">
+      </div>
+    </div>
+  </div>
+</header>
 
-{% block content %}{% endblock %}
+<!-- {% block content %}{% endblock %} -->
+
+<div id="map"></div>
+<div id="controlbutton">
+  <button id="createactivitytoggle" aria-label="Add"><i class="material-icons md-24">add</i></button>
+  <button id="mylocation" aria-label="My Location"><i class="material-icons md-24">near_me</i></button>
+</div>
 
 
 
-  <footer class="bg-white">
-    <!-- Copyrights -->
-    <div class="bg-light py-4">
-      <div class="container text-center">
-        <div class="collapse" id="navbarsExample01">
-          <div class="navbar-nav mx-auto my-auto">
-            <div class="row">
-              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 my-3">
-                <a class="border border-org px-1 py-1 mx-1" href="https://www.linkedin.com/in/aashka-prajapati-41a97393/">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">
-                      Aashka Prajapati
-                    </font>
-                  </font>
-                </a>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 my-3">
-                <a class="border border-org px-1 py-1 mx-1" href="https://www.linkedin.com/in/shreya-wadhwa-8a502463/">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">
-                      Shreya Wadhwa
-                    </font>
-                  </font>
-                </a>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 my-3">
-                <a class="border border-org px-1 py-1 mx-1" href="https://www.linkedin.com/in/kasra-naderi-6723b319a/">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">
-                      Kasra Naderi
-                    </font>
-                  </font>
-                </a>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 my-3">
-                <a class="border border-org px-1 py-1 mx-1" href="https://www.linkedin.com/in/imananoosheh/">
-                  <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">
-                      Iman Anooshehpour
-                    </font>
-                  </font>
-                </a>
-              </div>
+<footer class="fixed-bottom">
+  <!-- Copyrights -->
+  <div class="py-2">
+    <div class="container text-center">
+      <button class="border border-org navbar-toggler collapsed" type="button" data-toggle="collapse"
+        data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false"
+        aria-label="Toggle navigation" data-placement="top">
+        <i class="material-icons md-48">menu</i>
+      </button>
+      <div class="collapse" id="navbarsExample01">
+        <div class="navbar-nav mx-auto my-auto">
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 my-3">
+              <a class="border border-org px-1 py-1 mx-1" href="https://www.linkedin.com/in/aashka-prajapati-41a97393/">
+                Aashka Prajapati
+              </a>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 my-3">
+              <a class="border border-org px-1 py-1 mx-1" href="https://www.linkedin.com/in/shreya-wadhwa-8a502463/">
+                Shreya Wadhwa
+              </a>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 my-3">
+              <a class="border border-org px-1 py-1 mx-1" href="https://www.linkedin.com/in/kasra-naderi-6723b319a/">
+                Kasra Naderi
+              </a>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 my-3">
+              <a class="border border-org px-1 py-1 mx-1" href="https://www.linkedin.com/in/imananoosheh/">
+                Iman Anooshehpour
+              </a>
             </div>
           </div>
         </div>
-        <span class="text-muted mb-0 py-2">© 2020 Copyright:</span>
-          <button class="border border-org navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation" data-placement="top">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Group 33</font>
-            </font>
-          </button>
       </div>
     </div>
-  </footer>
-   <!-- Optional JavaScript -->
-    <!-- jQuery first, then Bootstrap JS -->
-    <script src="js/jquery-3.4.1.slim.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+  </div>
+</footer>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Bootstrap JS -->
+<script>
+  // Initialize and add the map
+  var map;
 
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: new google.maps.LatLng(-33.91722, 151.23064),
+      mapTypeId: 'roadmap',
+      //disableDefaultUI: true,
+      fullscreenControl: true,
+      scaleControl: false,
+      zoomControl: false,
+      streetViewControl: false
+    });
+
+    var contentString = '<div class="card border-0 text-center" style="max-width: 255px;padding-right: 12px !important;">'+
+      '<img class="card-img-top" src="img/1.png" alt="Card image cap">'+
+      '<div class="card-body">'+
+      '<h5 class="card-title">Card title</h5>'+
+      '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>'+
+      '<a href="#" class="btn btn-primary">Go somewhere</a>' +
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+
+    var iconBase = 'img/';
+    var icons = {
+      activity: {
+        name: 'Activity',
+        icon: iconBase + 'activity.svg'
+      }
+    };
+
+    var features = [{
+      position: new google.maps.LatLng(-33.91721, 151.22630),
+      type: 'activity'
+    }, {
+      position: new google.maps.LatLng(-33.91539, 151.22820),
+      type: 'activity'
+    }];
+
+    // Create markers.
+    features.forEach(function (feature) {
+      var marker = new google.maps.Marker({
+        position: feature.position,
+        icon: icons[feature.type].icon,
+        map: map,
+        title: 'Uluru (Ayers Rock)'
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    });
+  }
+</script>
+<!--Load the API from the specified URL
+      * The async attribute allows the browser to render the page while the API loads
+      * The key parameter will contain your own API key (which is not needed for this tutorial)
+      * The callback parameter executes the initMap() function
+      -->
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwC5xEDlfrDlrvbXJxanzUH0le_R1iw8&callback=initMap">
+</script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 </html>
