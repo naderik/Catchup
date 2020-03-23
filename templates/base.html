@@ -1,5 +1,6 @@
-<!doctype html>
 {% load static %}
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -13,11 +14,12 @@
     <link rel="stylesheet" href="{% static "catchup/css/location.css" %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Lato" rel="stylesheet">
     <script src="{% static "catchup/js/jquery-3.4.1.slim.min.js" %}"></script>
-    {% block title %}<title>CatchUp to catch up!</title>{% endblock %}
+    <title>{% block title %}CatchUp to catch up!{% endblock %}</title>
 </head>
 
-{% block header %}{% endblock header %}
+{% include "base_header.html" %}
 
+{% include "base_content.html" %}
 {% block content %}
     <div id="map"></div>
     <div id="controlbutton">
@@ -26,7 +28,7 @@
     </div>
 {% endblock content %}
 
-{% block footer %}{% endblock footer %}
+{% include "base_footer.html" %}
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Bootstrap JS -->
@@ -47,7 +49,7 @@
         });
 
         var contentString = '<div class="card border-0 text-center" style="max-width: 255px;padding-right: 12px !important;">' +
-            '<img class="card-img-top" src="img/1.png" alt="Card image cap">' +
+            '<img class="card-img-top" src="{% static "catchup/img/1.png" %}" alt="Card image cap">' +
             '<div class="card-body">' +
             '<h5 class="card-title">Card title</h5>' +
             '<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>' +
