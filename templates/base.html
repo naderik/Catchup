@@ -21,11 +21,67 @@
 
 {% include "base_content.html" %}
 {% block content %}
-    <div id="map"></div>
-    <div id="controlbutton">
-        <button id="createactivitytoggle" aria-label="Add"><i class="material-icons md-24">add</i></button>
-        <button id="mylocation" aria-label="My Location"><i class="material-icons md-24">near_me</i></button>
+<div id="map"></div>
+<div id="controlbutton">
+    <button id="createactivitytoggle" aria-label="Add" class="btn btn-primary" data-toggle="modal"
+        data-target="#createActivity" onClick="createMap()"><i class="material-icons md-24">add</i></button>
+    <button id="mylocation" aria-label="My Location"><i class="material-icons md-24">near_me</i></button>
+</div>
+<div class="modal fade" id="createActivity" tabindex="-1" role="dialog" aria-labelledby="createActivityTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create Activity</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="conatiner activityForm">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <select id="inputState" class="form-control">
+                                    <option selected>Activity Category</option>
+                                    <option>Sports</option>
+                                    <option>Outdoor Activity</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" placeholder="Activity Title">
+                            </div>
+                        </div>
+                        <div class="form-row" style="height: 190px;">
+                            <div class="form-group col-md-8">
+                                <div id="smallMap"></div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" placeholder="Latitude">
+                                <input type="text" class="form-control" placeholder="Longitude">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="formControlRange">Location range (km)</label>
+
+                            <div class="slider">
+                                <input type="range" min="0" max="100" onchange="rangevalue.value=value" />
+                                <output id="rangevalue">50</output>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Create</button>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock content %}
 
 {% include "base_footer.html" %}
@@ -34,7 +90,14 @@
 <!-- jQuery first, then Bootstrap JS -->
 <script>
     // Initialize and add the map
-    var map;
+    var map, smallMap;
+
+    function createMap(){
+        smallMap = new google.maps.Map(document.getElementById('smallMap'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+        });
+    }
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -46,7 +109,7 @@
             scaleControl: false,
             zoomControl: false,
             streetViewControl: false
-        });
+        });        
 
         var contentString = '<div class="card border-0 text-center" style="max-width: 255px;padding-right: 12px !important;">' +
             '<img class="card-img-top" src="{% static "catchup/img/1.png" %}" alt="Card image cap">' +
@@ -98,8 +161,9 @@
       * The callback parameter executes the initMap() function
       -->
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwC5xEDlfrDlrvbXJxanzUH0le_R1iw8&callback=initMap">
-</script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwC5xEDlfrDlrvbXJxanzUH0le_R1iw8&callback=initMap">
+    </script>
 <script src="{% static "catchup/js/bootstrap.min.js" %}"></script>
 <script src="{% static "catchup/js/main.js" %}"></script>
+
 </html>
