@@ -20,8 +20,7 @@ footer {
   background-color: #00AEDB;
   color: #131313;
   width: 100%;
-  border-radius: 20px 20px 0px 0px;
-  height: 8%; }
+  border-radius: 20px 20px 0px 0px; }
   footer i {
     color: white !important; }
 
@@ -45,7 +44,8 @@ html,
 body {
   height: 100%;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-family: Lato; }
 
 /* Set the size of the div element that contains the map */
 #map {

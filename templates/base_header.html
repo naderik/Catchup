@@ -1,16 +1,16 @@
-{% extends "base.html" %}
+{% load static %}
 
 {% block header %}
-<header class="fixed-top">
-  <div class="navbar-nav mx-auto my-auto">
-    <div class="row">
-      <div class="col-4 text-center my-2 px-2 border-right">
-        <img id="navlogo" src="{% static "catchup/img/logo-w.svg" %}" alt="CatchUp Logo">
-      </div>
-      <div class="col-8 my-auto">
-        <input class="form-control" id="navsearch" type="text" placeholder="Search Activity...">
-      </div>
-    </div>
-  </div>
-</header>
-{% endblock %}
+    <header class="fixed-top">
+        <div class="navbar-nav mx-auto my-auto">
+            <div class="row">
+                <div class="col-4 text-center my-2 px-2 border-right">
+                    <img id="navlogo" src="{% static "catchup/img/logo-w.svg" %}" alt="CatchUp Logo">
+                </div>
+                <div class="col-8 my-auto">
+                    <input class="form-control" id="navsearch" type="text" placeholder="Search Activity...">
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock header %}

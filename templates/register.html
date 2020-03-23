@@ -1,99 +1,103 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/main.css">
-
-  <title>CatchUp to catch up!</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "catchup/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "catchup/css/main.css" %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Lato" rel="stylesheet">
+    <title>{% block title %}CatchUp to catch up!{% endblock %}</title>
 </head>
 
 <body>
-  <div class="container gradient-boarder center-translate">
+{% include "base_header.html" %}
+<div class="container gradient-boarder center-translate">
     <div class="col text-center">
-      <img class="logo-login" src="img/logo.svg" alt="logo">
-      <h1 style="display: none;">CatchUp</h1>
-      <h2>Place to catch up!</h2>
+        <img class="logo-login" src="{% static "catchup/img/logo.svg" %}" alt="logo">
+        <h1>CatchUp</h1>
+        <h2>Place to catch up!</h2>
     </div>
     <div class="col">
-      <form class="row">
-        <div class="col-lg-4">
-          <div class="form-group">
-            <label for="InputFirstname">First Name</label><span class="asterisk"></span>
-            <input type="firstname" class="form-control" id="InputFirstname" required>
-          </div>
-          <div class="form-group">
-            <label for="InputLastname">Last Name</label><span class="asterisk"></span>
-            <input type="Lastname" class="form-control" id="InputLastname" required>
-          </div>
-          <div class="form-group">
-            <label for="InputEmail">Email address</label><span class="asterisk"></span>
-            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" required>
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="form-group">
-            <label for="InputPassword">Password</label><span class="asterisk"></span>
-            <input type="password" class="form-control" id="InputPassword" required>
-          </div>
-          <div class="form-group">
-            <label for="InputConfirmPassword">Confirm Password</label><span class="asterisk"></span>
-            <input type="confirmPassword" class="form-control" id="InputConfirmPassword" required>
-          </div>
-          <div class="form-group">
-            <label for="InputGender">Own defined gender</label><span class="asterisk"></span>
-            <div id="InputGender" class="max1">
-              <label class="radio inline">
-                <input type="radio" name="gender" value="non-binary" checked>
-                <span>Non-binary</span>
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="gender" value="male">
-                <span> Male </span>
-              </label>
-              <label class="radio inline">
-                <input type="radio" name="gender" value="female">
-                <span>Female </span>
-              </label>
+        <form class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label for="InputFirstname">First Name</label><span class="asterisk"></span>
+                    <input type="firstname" class="form-control" id="InputFirstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="InputLastname">Last Name</label><span class="asterisk"></span>
+                    <input type="Lastname" class="form-control" id="InputLastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail">Email address</label><span class="asterisk"></span>
+                    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          
-          
-          <div class="form-group">
-            <label for="InputPhone">Phone Number</label>
-            <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" id="InputPhone" class="form-control"
-              placeholder="Example: 1234567890" value="" />
-          </div>
-          <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="InputTermsAgreement" required>
-              <label class="form-check-label" for="InputTermsAgreement">
-                Please agree to terms and conditions
-              </label><span class="asterisk"></span>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label for="InputPassword">Password</label><span class="asterisk"></span>
+                    <input type="password" class="form-control" id="InputPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="InputConfirmPassword">Confirm Password</label><span class="asterisk"></span>
+                    <input type="confirmPassword" class="form-control" id="InputConfirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="InputGender">Own defined gender</label><span class="asterisk"></span>
+                    <div id="InputGender" class="max1">
+                        <label class="radio inline">
+                            <input type="radio" name="gender" value="non-binary" checked>
+                            <span>Non-binary</span>
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" name="gender" value="male">
+                            <span> Male </span>
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" name="gender" value="female">
+                            <span>Female </span>
+                        </label>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck">
-            <label class="form-check-label" for="exampleCheck">Remeber this Device</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Register</button>
-        </div>
-      </form>
-    </div>
-  </div>
+            <div class="col-lg-4">
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Bootstrap JS -->
-  <script src="js/jquery-3.4.1.slim.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+
+                <div class="form-group">
+                    <label for="InputPhone">Phone Number</label>
+                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" id="InputPhone"
+                           class="form-control"
+                           placeholder="Example: 1234567890" value=""/>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="InputTermsAgreement" required>
+                        <label class="form-check-label" for="InputTermsAgreement">
+                            Please agree to terms and conditions
+                        </label><span class="asterisk"></span>
+                    </div>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck">
+                    <label class="form-check-label" for="exampleCheck">Remeber this Device</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% include "base_footer.html" %}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Bootstrap JS -->
+<script src="{% static "catchup/js/jquery-3.4.1.slim.min.js" %}"></script>
+<script src="{% static "catchup/js/bootstrap.min.js" %}"></script>
 </body>
 
 </html>
