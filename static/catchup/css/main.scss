@@ -1,0 +1,101 @@
+$bluecolor : #00AEDB;
+$darkcolor : #131313;
+
+.gradient-boarder {
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, #00AEDB, rgba(0, 0, 0, 0)) 1 100%;
+}
+
+.center-translate {
+    //position: absolute;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    //transform: translate(-50%, -50%);
+}
+
+.logo-login {
+    width: 50% !important;
+}
+
+span.asterisk::after {
+    content: '  *';
+    color: red !important;
+}
+
+footer {
+    background-color: $bluecolor;
+    color: $darkcolor;
+    width: 100%;
+    border-radius: 20px 20px 0px 0px;
+    //height: 8%;
+    i{
+        color: white !important;
+    }
+}
+
+header {
+    background-color: $bluecolor;
+    color: $darkcolor;
+    width: 100%;
+    border-radius: 0px 0px 20px 20px;
+
+    div.col-4 {
+        border-right: 0.5rem solid $darkcolor;
+    }
+}
+
+#navlogo {
+    max-width: 6rem;
+}
+
+#navsearch {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: $darkcolor !important;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Lato;
+}
+
+/* Set the size of the div element that contains the map */
+#map {
+    height: 95%;
+    /* The height is the height of the web page */
+}
+
+#createactivitytoggle {
+    position: fixed;
+    top: 12%;
+    right: 4%;
+    width: 3rem;
+    height: 3rem;
+    border: 0px transparent;
+    border-radius: 30px;
+    background-color: $bluecolor;
+    color: white !important;
+    i {
+        vertical-align: middle !important;
+    }
+}
+#mylocation{
+    position: fixed;
+    bottom: 14%;
+    right: 4%;
+    width: 3rem;
+    height: 3rem;
+    border: 0px transparent;
+    border-radius: 30px;
+    background-color: $bluecolor;
+    color: white !important;
+    i {
+        vertical-align: middle !important;
+    }
+}
