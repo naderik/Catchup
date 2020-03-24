@@ -1,49 +1,60 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <title>CatchUp to catch up!</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static "catchup/css/bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{% static "catchup/css/main.css" %}">
+  <link rel="stylesheet" href="{% static "catchup/css/location.css" %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Lato" rel="stylesheet">
+  <script src="{% static "catchup/js/jquery-3.4.1.slim.min.js" %}"></script>
+  <script src="{% static "catchup/js/topLoaderMain.js" %}"></script>
+  <title>{% block title %}CatchUp to catch up!{% endblock %}</title>
 </head>
 
-<body>
-    <div class="container gradient-boarder center-translate">
-        <div class="col text-center">
-            <img class="logo-login" src="img/logo.svg" alt="logo">
-            <h1 style="display: none;">CatchUp</h1>
-            <h2>Place to catch up!</h2>
-        </div>
-        <div class="col">
-            <form>
-                <div class="form-group">
-                  <label for="InputEmail">Email address</label>
-                  <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                  <label for="InputPassword">Password</label>
-                  <input type="password" class="form-control" id="InputPassword">
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck">
-                  <label class="form-check-label" for="exampleCheck">Remeber this Device</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Sign In</button>
-              </form>
-        </div>
-    </div>
+{% include "base_header.html" %}
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Bootstrap JS -->
-    <script src="js/jquery-3.4.1.slim.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</body>
+{% include "base_content.html" %}
+{% block content %}
+<div class="container gradient-boarder center-translate">
+  <div class="col text-center">
+    <img class="logo-login" src="{% static "catchup/img/logo.svg" %}" alt="logo">
+    <h1 style="display: none;">CatchUp</h1>
+    <h2>Place to catch up!</h2>
+  </div>
+  <div class="col">
+    <form>
+      <div class="form-group">
+        <label for="InputEmail">Email address</label>
+        <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+          else.</small>
+      </div>
+      <div class="form-group">
+        <label for="InputPassword">Password</label>
+        <input type="password" class="form-control" id="InputPassword">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck">
+        <label class="form-check-label" for="exampleCheck">Remeber this Device</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% include "base_footer.html" %}
+
+
+<script src="{% static "catchup/js/bootstrap.min.js" %}"></script>
+<script src="{% static "catchup/js/main.js" %}"></script>
 
 </html>
