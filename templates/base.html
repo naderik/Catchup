@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static "catchup/css/location.css" %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Lato" rel="stylesheet">
     <script src="{% static "catchup/js/jquery-3.4.1.slim.min.js" %}"></script>
+    <script src="{% static "catchup/js/topLoaderMain.js" %}"></script>
     <title>{% block title %}CatchUp to catch up!{% endblock %}</title>
 </head>
 
@@ -21,67 +22,73 @@
 
 {% include "base_content.html" %}
 {% block content %}
-<div id="map"></div>
-<div id="controlbutton">
-    <button id="createactivitytoggle" aria-label="Add" class="btn btn-primary" data-toggle="modal"
-        data-target="#createActivity" onClick="createMap()"><i class="material-icons md-24">add</i></button>
-    <button id="mylocation" aria-label="My Location"><i class="material-icons md-24">near_me</i></button>
-</div>
-<div class="modal fade" id="createActivity" tabindex="-1" role="dialog" aria-labelledby="createActivityTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Create Activity</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="conatiner activityForm">
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <select id="inputState" class="form-control">
-                                    <option selected>Activity Category</option>
-                                    <option>Sports</option>
-                                    <option>Outdoor Activity</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <input type="text" class="form-control" placeholder="Activity Title">
-                            </div>
-                        </div>
-                        <div class="form-row" style="height: 190px;">
-                            <div class="form-group col-md-8">
-                                <div id="smallMap"></div>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" placeholder="Latitude">
-                                <input type="text" class="form-control" placeholder="Longitude">
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="formControlRange">Location range (km)</label>
-
-                            <div class="slider">
-                                <input type="range" min="0" max="100" onchange="rangevalue.value=value" />
-                                <output id="rangevalue">50</output>
-                            </div>
-                        </div>
-                    </form>
+    <div id="map"></div>
+    <div id="controlbutton">
+        <button type="button" id="createactivitytoggle" aria-label="Add" class="btn btn-primary" data-toggle="modal"
+                data-target="#createActivity" onClick="createSmallMap()"><i class="material-icons md-24">add</i>
+        </button>
+        <button id="mylocation" aria-label="My Location"><i class="material-icons md-24">near_me</i></button>
+    </div>
+    <div class="modal fade" id="createActivity" tabindex="-1" role="dialog" aria-labelledby="createActivityTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create Activity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Create</button>
+                <div class="modal-body">
+                    <div class="conatiner activityForm">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <select id="inputState" class="form-control">
+                                        <option selected>Activity Category</option>
+                                        <option>Sports</option>
+                                        <option>Outdoor Activity</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" placeholder="Activity Title">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <!--<lable>Please move the map to your activity's location</lable>-->
+                                    <div id="smallMapMarker"><span class="material-icons md-48">add_location</span>
+                                    </div>
+                                    <div id="smallMap"></div>
+                                </div>
+                                <div class="form-group" style="display: none !important;">
+                                    <input id="default_latitude" type="text" class="form-control"
+                                           placeholder="Latitude">
+                                    <input id="default_longitude" type="text" class="form-control"
+                                           placeholder="Longitude">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange">Location range (km)</label>
+
+                                <div class="slider">
+                                    <input type="range" min="0" max="100" onchange="rangevalue.value=value"/>
+                                    <output id="rangevalue">50</output>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Create</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock content %}
 
 {% include "base_footer.html" %}
@@ -91,12 +98,42 @@
 <script>
     // Initialize and add the map
     var map, smallMap;
+    var startPos;
 
-    function createMap(){
-        smallMap = new google.maps.Map(document.getElementById('smallMap'), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 8
-        });
+    function createSmallMap() {
+        var startPos;
+        var geoOptions = {
+            timeout: 8 * 1000
+        };
+
+        var geoSuccess = function (position) {
+            startPos = position;
+            userLat = startPos.coords.latitude;
+            userLng = startPos.coords.longitude;
+
+            map = new google.maps.Map(document.getElementById('smallMap'), {
+                zoom: 16,
+                center: new google.maps.LatLng(userLat, userLng),
+                mapTypeId: 'roadmap',
+                //disableDefaultUI: true,
+                fullscreenControl: false,
+                scaleControl: false,
+                zoomControl: false,
+                streetViewControl: false
+            });
+            document.getElementById('default_latitude').value = userLat.toFixed(3);
+            document.getElementById('default_longitude').value = userLng.toFixed(3);
+
+            google.maps.event.addListener(map, 'center_changed', function () {
+                document.getElementById('default_latitude').value = (map.getCenter().lat()).toFixed(7);
+                document.getElementById('default_longitude').value = (map.getCenter().lng()).toFixed(7);
+            });
+        };
+        var geoError = function (error) {
+            console.log('Error occurred. Error code: ' + error.code);
+        };
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+        google.maps.event.addDomListener(window, 'load', createSmallMap);
     }
 
     function initMap() {
@@ -109,7 +146,7 @@
             scaleControl: false,
             zoomControl: false,
             streetViewControl: false
-        });        
+        });
 
         var contentString = '<div class="card border-0 text-center" style="max-width: 255px;padding-right: 12px !important;">' +
             '<img class="card-img-top" src="{% static "catchup/img/1.png" %}" alt="Card image cap">' +
@@ -161,8 +198,8 @@
       * The callback parameter executes the initMap() function
       -->
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwC5xEDlfrDlrvbXJxanzUH0le_R1iw8&callback=initMap">
-    </script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwC5xEDlfrDlrvbXJxanzUH0le_R1iw8&callback=initMap">
+</script>
 <script src="{% static "catchup/js/bootstrap.min.js" %}"></script>
 <script src="{% static "catchup/js/main.js" %}"></script>
 
