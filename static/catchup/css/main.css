@@ -6,11 +6,12 @@
 .center-translate {
   width: 100%;
   height: auto;
-  top: 50%;
-  left: 50%; }
+  margin-top: 72px;
+  margin-bottom: 52px;
+}
 
 .logo-login {
-  width: 50% !important; }
+  width: 28% !important; }
 
 span.asterisk::after {
   content: '  *';
